@@ -1,0 +1,9 @@
+set guioptions .
+set selection-clipboard clipboard
+set first-page-column 2
+
+map <C-d> toggle_statusbar
+map d scroll half-down
+map f scroll half-up
+map D set 'pages-per-row 2'
+map F set 'pages-per-row 1'

@@ -1,0 +1,5 @@
+[url "https://aur.archlinux.org/"]
+    insteadOf = aur://
+[user]
+	email = ebc8751@hotmail.com
+	name = ebc

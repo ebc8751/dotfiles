@@ -1,0 +1,64 @@
+URxvt.foreground:		 #47babd
+URxvt.background:		 #0f0d0c
+URxvt.cursorColor:		 #44bea1
+URxvt.scrollBar:		 false
+URxvt.scrollBar_right:		 true
+URxvt.scrollColor:		 #161616
+URxvt.scrollTtyOutput:		 false
+URxvt.scrollWithBuffer:		 true
+URxvt.scrollTtyKeypress:	 true
+URxvt.doubleBuffer:		 true
+URxvt.transparent: 		 false
+
+!black
+*color0:				 #353535
+*color8:				 #666666
+!red
+*color1:				 #b96e9f
+*color9:				 #d49fac
+!green
+*color2:				 #529658
+*color10:				 #68bd6f
+!yellow
+*color3:				 #de935f
+*color11:                #f0c674
+!blue
+*color4:				 #226077
+*color12:				 #539ab6
+!magenta
+*color5:				 #9e71b5
+*color13:				 #af9fca
+!cyan
+*color6:				 #606a9b
+*color14:				 #6b6a8f
+!white
+*color7:				 #979797
+*color15:				 #b4bcbd
+
+
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.keysym.M-Delete: perl:matcher:list
+URxvt.keysym.C-Delete: perl:matcher:last
+
+URxvt.font:			 xft:xos4 Terminus:pixelsize=15
+URxvt.boldFont:			 xft:xos4 Terminus:pixelsize=15
+
+
+Xft.antialias:			 1
+Xft.autohint:			 0
+Xft.dpi:			 96
+Xft.hinting:			 1
+Xft.hintstyle:			 hintslight
+Xft.lcdfilter:			 lcddefault
+Xft.rgba:			 rgb
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #273238, #273238, #1e2529
+rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
+rofi.color-active: #273238, #80cbc4, #273238, #394249, #80cbc4
+rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844

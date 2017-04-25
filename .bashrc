@@ -1,0 +1,1 @@
+export QUARTUS_64BIT=1

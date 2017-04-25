@@ -1,20 +1,41 @@
 #!/bin/sh
+
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
+
+# merge in defaults and keymaps
+
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
+fi
+
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
+fi
+
+if [ -f "$userresources" ]; then
+    xrdb -merge "$userresources"
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
+
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
 		[ -x "$f" ] && . "$f"
 	done
 	unset f
 fi
-PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/home/ebc/.scripts:/home/ebc:/home/ebc/opt/altera/quartus/bin:/home/ebc/opt/altera/modelsim_ase/linuxaloem:/home/ebc/opt/altera/modelsim_ase/bin:/home/ebc/opt/altera/modelsim_ase:" &
-export PATH &
-source /etc/profile &
+
 xrdb -merge ~/.Xresources &
 xset -b &
 xsetroot -cursor_name left_ptr &
 devmon --no-gui --no-startup-id &
-compton &
-#feh --randomize --bg-fill ~/.wallpaper/* &
-#feh --bg-fill ~/Desktop/Wallpaper.png &
+compton -c &
 sxhkd -c /home/ebc/.config/sxhkd/sxhkdrc &
+dunst &
 
 exec bspwm -s "$PANEL_FIFO" -p W 
