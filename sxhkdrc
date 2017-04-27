@@ -3,39 +3,28 @@
 #
 
 # terminal emulator
-super + shift + space
+super + space
 	urxvt
 
 # firefox
 super + shift + Return
 	firefox
 
-#thunar
-super + shift + t
-	thunar
-
 #scrot
 super + shift + -
-
-# brightness
-XF86KbdBrightnessUp
-	xbacklight -inc 5 &
-
-XF86KbdBrightnessDown
-	xbacklight -dec 5 &
+	scrotf
 
 # program launcher
-super + space
-	rofi -show run	
+super + Tab
+	rofi -show run
 
-#empty space
-super + shift + z
+# empty space
+super + shift + f
 	{bspc node -i}
 
-#spacekiller
-super + alt + z
+# spacekiller
+super + alt + f
 	{for win in `bspc query -N -d -n .leaf.!window`; do bspc node $win -k; done}
-
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -52,14 +41,14 @@ super + alt + Escape
 # quit saving state
 super + alt + {_,shift + }Escape
 	{bspc wm -d > "$BSPWM_STATE" && bspc quit, \
-	bspc quit 1}	
+	bspc quit 1}
 
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
-super + v
+super + r
 	bspc desktop -l next
 
 # swap the current node and the biggest node
@@ -71,11 +60,11 @@ super + b
 #
 
 # set the window state
-super + {x,shift + x,f,shift +f}
+super + {x,shift + x,z,shift + z}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
-super + {r,shift + r,alt + r}
+super + {alt + z,alt + x,alt + c}
 	bspc node -g {locked,sticky,private}
 
 #
@@ -87,11 +76,11 @@ super + {_,shift + }{a,s,w,d}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {g,shift + g,h,alt + h}
+super + {e,shift + e, ctrl + e, ctrl + shift + e}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node
-super + {_,shift + }Tab
+super + {_,shift + }t
 	bspc node -f {next,prev}
 
 # focus the next/previous desktop
@@ -99,7 +88,7 @@ super + {n,m}
 	bspc desktop -f {prev,next}
 
 # focus the last node/desktop
-super + {alt + Tab,Tab}
+super + {shift + n,ctrl + n}
 	bspc {desktop,node} -f last
 
 # focus the older or newer node in the focus history
@@ -129,12 +118,12 @@ super + ctrl + space
 	bspc node -p cancel
 
 # cancel the preselection for the focused desktop
-super + ctrl + shift + space
+super + alt + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 # Move window into presel position
-super + y
-	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused	
+super + c
+	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
 #
 # move/resize
 #
@@ -155,12 +144,12 @@ super + {Left,Down,Up,Right}
 # Brightness
 #
 
-#fine inc/dec brightness
-super + alt + {o,p}
+#inc/dec brightness
+super + {o,p}
 	light -{U,A} 10
 
-#inc/dec
-super + {o,p}
+#fine inc/dec
+super + alt +ss {o,p}
 	light -{U,A} 3
 
 #gaps
@@ -194,4 +183,3 @@ super + shift + \
             bspc node -f $i;\
         fi;\
     fi
-

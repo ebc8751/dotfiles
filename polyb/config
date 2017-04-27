@@ -40,9 +40,9 @@ padding-right = 0
 module-margin-right = 0
 module-margin-left = 0
 
-modules-right = mpd separator battery separator filesystem separator memory separator cpu separator keyboard separator network separator volume separator date
+modules-right = battery separator filesystem separator memory separator cpu coretemps separator keyboard separator network separator pkg
 modules-center = xwindow
-modules-left = bspwm
+modules-left = bspwm separator mpd separator volume separator date
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -59,7 +59,7 @@ underline-color = ${colors.primary}
 ;tray-transparent = false
 ;tray-scale = 1.0
 
-font-0 = xos4 Terminus:size=12;0
+font-0 = xos4 Terminus:size=12;2
 font-1 = MaterialIcons:size=10;0
 font-2 = Termsynu:size=8:antialias=false;-2
 font-3 = FontAwesome:size=8;2
@@ -74,7 +74,9 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
+mount-0-underline = ${colors.foreground}
 mount-1 = /home
+mount-1-underline = ${colors.foreground}
 
 label-underline = ${colors.foreground}
 label-mounted-padding = 1
@@ -82,7 +84,9 @@ label-unmounted-padding = 0
 
 label-mounted =  %free%
 label-unmounted =  not mounted
-label-unmounted-foreground = ded
+label-unmounted-foreground = ${colors.foreground}
+
+format-underline = ${colors.foreground}
 
 
 [module/xbacklight]
@@ -122,9 +126,8 @@ ramp-coreload-2 = ▄
 ramp-coreload-3 = ▅
 ramp-coreload-4 = ▆
 ramp-coreload-5 = █
-label =  %percentage%%
+label =   %percentage%%
 label-underline = ${colors.secondary}
-
 
 
 [module/memory]
@@ -151,7 +154,7 @@ format-charging-underline = ${colors.secondary}
 format-discharging = <ramp-capacity>  <label-discharging>
 format-discharging-underline = ${colors.secondary}
 
-format-full-prefix = ""
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${colors.secondary}
 
@@ -170,32 +173,11 @@ animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-format-padding = 1
-
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-
 [module/mpd]
 type = internal/mpd
 host = 127.0.0.1
 port = 6600
-format-online =<icon-prev><label-song><icon-next>
+format-online =<icon-prev><toggle><label-song><icon-next>
 format-online-underline = ${colors.secondary}
 format-online-padding = 1
 
@@ -219,6 +201,7 @@ label-song-padding = 1
 [module/bspwm]
 type = internal/bspwm
 format = <label-state> <label-mode>
+format-underline = ${colors.secondary}
 
 label-focused = %icon%
 ;label-focused-font = 1
@@ -250,15 +233,17 @@ ws-icon-default = 
 
 [module/date]
 type = internal/date
-#date-alt =   %A %H:%M
-date = %{F#928374}%{F-} %H:%M
-interval = 5
+date =  %Y-%m-%d
+date-alt = %A%, %d %B %Y
+#date = %{F#928374}%{F-} %H:%M
+interval = 15
 format-underline = #cc131313
 ;format-background = ${colors.black}
 format-foreground = ${colors.foreground}
 format-padding = 1
 
 label-separator = |
+
 
 [module/volume]
 type = internal/volume
@@ -357,7 +342,7 @@ format-packetloss = <animation-packetloss> <label-connected>
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-label-connected = ~%signal:3% : %essid%
+label-connected = : %signal% : %essid%
 
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
@@ -381,9 +366,28 @@ animation-packetloss-1 = 📶
 animation-packetloss-framerate = 500
 
 
+[module/pkg]
+type = custom/script
+interval = 1200
+format = <label>
+format-underline = #dc322f
+label = "%output:0:30%"
+exec = ~/.scripts/apkg.sh
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+
+
+[module/coretemps]
+type = custom/script
+exec-if = sensors
+exec = sensors | grep Core | awk '{print substr($3, 2, length($3)-5)}' | tr '\n' ' ' | sed 's/ /°C  /g' | sed 's/  $//'
+format-prefix = " ! "
+format-prefix-font = 4
+format-prefix-foreground = ${colors.secondary}
+format-underline = ${colors.secondary}
+
+
 [module/separator]
 type = custom/text
 content = |
 content-foreground = ${colors.secondary}
-
 ; vim:ft=dosini
