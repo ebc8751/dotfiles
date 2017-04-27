@@ -21,6 +21,33 @@ foreground-alt = ${xrdb:color1}
 primary = ${xrdb:color10}
 secondary = ${xrdb:color12}
 
+[bar/top]
+
+bottom = false
+width = 90%
+height = 35
+offset-x = 95.5
+offset-y = 0
+padding-left = 0
+padding-right = 0
+
+module-margin-right = 0
+module-margin-left = 0
+
+modules-right = date
+modules-center = bspwm
+modules-left = battery separator network
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 1
+underline-color = ${colors.primary}
+
+font-0 = xos4 Terminus:size=15;2
+font-1 = MaterialIcons:size=15;0
+font-2 = Termsynu:size=15:antialias=false;-2
+font-3 = FontAwesome:size=15;2
 
 [bar/bar]
 bottom = true
@@ -28,7 +55,7 @@ wm-restack = bspwm
 width = 99%
 height = 26
 offset-x = 9
-offset-y = 11
+offset-y = 6
 
 locale = en_US.UTF-8
 
@@ -40,9 +67,9 @@ padding-right = 0
 module-margin-right = 0
 module-margin-left = 0
 
-modules-right = battery separator filesystem separator memory separator cpu coretemps separator keyboard separator network separator pkg
-modules-center = xwindow
-modules-left = bspwm separator mpd separator volume separator date
+modules-right =  keyboard separator memory separator pkg separator filesystem
+modules-center = volume mpd
+modules-left = cpu separator coretemps
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -60,7 +87,7 @@ underline-color = ${colors.primary}
 ;tray-scale = 1.0
 
 font-0 = xos4 Terminus:size=12;2
-font-1 = MaterialIcons:size=10;0
+font-1 = Wuncon Siji:size=10;0
 font-2 = Termsynu:size=8:antialias=false;-2
 font-3 = FontAwesome:size=8;2
 
@@ -74,19 +101,16 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-mount-0-underline = ${colors.foreground}
 mount-1 = /home
-mount-1-underline = ${colors.foreground}
 
-label-underline = ${colors.foreground}
+label-mounted-underline = ${colors.foreground}
+label-unmounted-underline = ${colors.foreground}
 label-mounted-padding = 1
-label-unmounted-padding = 0
+label-unmounted-padding = 1
 
-label-mounted =  %free%
-label-unmounted =  not mounted
+label-mounted =  %free% of %total%
+label-unmounted =  %mountpoint%: not mounted
 label-unmounted-foreground = ${colors.foreground}
-
-format-underline = ${colors.foreground}
 
 
 [module/xbacklight]
@@ -117,15 +141,22 @@ card = intel_backlight
 type = internal/cpu
 interval = 1.5
 
-format = <label>
-format-underline = ${colors.foreground}
+format = <label> <ramp-coreload>
+format-padding = 1
+format-underline = ${colors.secondary}
 
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▄
-ramp-coreload-3 = ▅
-ramp-coreload-4 = ▆
-ramp-coreload-5 = █
+ramp-coreload-0 = 
+ramp-coreload-1 = 
+ramp-coreload-2 = 
+ramp-coreload-3 = 
+ramp-coreload-4 = 
+ramp-coreload-5 = 
+ramp-coreload-0-underline = ${colors.secondary}
+ramp-coreload-1-underline = ${colors.secondary}
+ramp-coreload-2-underline = ${colors.secondary}
+ramp-coreload-3-underline = ${colors.secondary}
+ramp-coreload-4-underline = ${colors.secondary}
+ramp-coreload-5-underline = ${colors.secondary}
 label =   %percentage%%
 label-underline = ${colors.secondary}
 
@@ -233,13 +264,18 @@ ws-icon-default = 
 
 [module/date]
 type = internal/date
-date =  %Y-%m-%d
-date-alt = %A%, %d %B %Y
+date-alt =   %Y-%m-%d
+date =  %A, %d %B %Y
 #date = %{F#928374}%{F-} %H:%M
+time-alt = %{F#928374}%{F-} %H:%M
+time = %{F#928374}%{F-} %H:%M:%S
+
+label = %date% %time%
+label-underline = ${colors.foreground}
+
 interval = 15
-format-underline = #cc131313
 ;format-background = ${colors.black}
-format-foreground = ${colors.foreground}
+format-underline = ${colors.foreground}
 format-padding = 1
 
 label-separator = |
@@ -380,7 +416,7 @@ exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 type = custom/script
 exec-if = sensors
 exec = sensors | grep Core | awk '{print substr($3, 2, length($3)-5)}' | tr '\n' ' ' | sed 's/ /°C  /g' | sed 's/  $//'
-format-prefix = " ! "
+format-prefix = "  "
 format-prefix-font = 4
 format-prefix-foreground = ${colors.secondary}
 format-underline = ${colors.secondary}
