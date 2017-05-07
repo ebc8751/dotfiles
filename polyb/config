@@ -8,26 +8,25 @@
 
 
 [colors]
-background = ${xrdb:color0}
-background-alt = ${xrdb:color8}
-bdackground-unf = ${xrdb:color10}
-background-mod0 = ${xrdb:color1}
-background-mod1 = ${xrdb:color11}
-background-mod2 = ${xrdb:color5}
-background-alrt = ${xrdb:color15}
+background = #222222
+background-alt = ${xrdb:color1}
+bdackground-alrt = ${xrdb:color2}
+background-mod0 = ${xrdb:color3}
+background-mod1 = ${xrdb:color5}
+background-mod2 = ${xrdb:color6}
+background-unf = ${xrdb:color9}
 
-foreground = ${xrdb:color15}
-foreground-alt = ${xrdb:color1}
-primary = ${xrdb:color10}
-secondary = ${xrdb:color12}
+foreground = ${xrdb:color7}
+foreground-alt = ${xrdb:color14}
+foreground-s = ${xrdb:color7}
 
 [bar/top]
 
 bottom = false
 width = 90%
-height = 35
+height = 25
 offset-x = 95.5
-offset-y = 0
+offset-y = 3
 padding-left = 0
 padding-right = 0
 
@@ -42,20 +41,20 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 underline-size = 1
-underline-color = ${colors.primary}
+underline-color = ${colors.foreground-s}
 
-font-0 = xos4 Terminus:size=15;2
+font-0 = xos4 Terminus:size=15;0
 font-1 = MaterialIcons:size=15;0
-font-2 = Termsynu:size=15:antialias=false;-2
-font-3 = FontAwesome:size=15;2
+font-2 = Termsynu:size=15:antialias=false;0
+font-3 = FontAwesome:size=15;0
 
 [bar/bar]
 bottom = true
 wm-restack = bspwm
 width = 99%
-height = 26
+height = 23
 offset-x = 9
-offset-y = 6
+offset-y = 3
 
 locale = en_US.UTF-8
 
@@ -68,14 +67,14 @@ module-margin-right = 0
 module-margin-left = 0
 
 modules-right =  keyboard separator memory separator pkg separator filesystem
-modules-center = volume mpd
-modules-left = cpu separator coretemps
+modules-center = cpu coretemps
+modules-left = mpd volume
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
 underline-size = 1
-underline-color = ${colors.primary}
+underline-color = ${colors.foreground-s}
 
 ;tray-detached = false
 ;tray-position = 0
@@ -103,8 +102,8 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted-underline = ${colors.foreground}
-label-unmounted-underline = ${colors.foreground}
+label-mounted-underline = ${colors.foreground-alt}
+label-unmounted-underline = ${colors.foreground-alt}
 label-mounted-padding = 1
 label-unmounted-padding = 1
 
@@ -128,7 +127,7 @@ bar-fill-font = 2
 bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-foreground = ${colors.foreground-s}
 
 
 [module/backlight-acpi]
@@ -143,7 +142,7 @@ interval = 1.5
 
 format = <label> <ramp-coreload>
 format-padding = 1
-format-underline = ${colors.secondary}
+format-underline = ${colors.foreground-alt}
 
 ramp-coreload-0 = 
 ramp-coreload-1 = 
@@ -151,21 +150,21 @@ ramp-coreload-2 = 
 ramp-coreload-3 = 
 ramp-coreload-4 = 
 ramp-coreload-5 = 
-ramp-coreload-0-underline = ${colors.secondary}
-ramp-coreload-1-underline = ${colors.secondary}
-ramp-coreload-2-underline = ${colors.secondary}
-ramp-coreload-3-underline = ${colors.secondary}
-ramp-coreload-4-underline = ${colors.secondary}
-ramp-coreload-5-underline = ${colors.secondary}
+ramp-coreload-0-underline = ${colors.foreground-alt}
+ramp-coreload-1-underline = ${colors.background-alt}
+ramp-coreload-2-underline = ${colors.background-mod0}
+ramp-coreload-3-underline = ${colors.background-mod1}
+ramp-coreload-4-underline = ${colors.background-mod2
+ramp-coreload-5-underline = ${colors.foreground-alt}
 label =   %percentage%%
-label-underline = ${colors.secondary}
+label-underline = ${colors.foreground-alt}
 
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-padding = 1
-format-underline = ${colors.secondary}
+format-underline = ${colors.foreground-alt}
 label =  %percentage_used%%
 
 
@@ -180,27 +179,25 @@ format-discharging-padding = 1
 format-full-padding = 1
 
 format-charging = <animation-charging>  <label-charging>
-format-charging-underline = ${colors.secondary}
+format-charging-underline = ${colors.foreground-s}
 
 format-discharging = <ramp-capacity>  <label-discharging>
-format-discharging-underline = ${colors.secondary}
+format-discharging-underline = ${colors.foreground-s}
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${colors.secondary}
+format-full-prefix-foreground = ${colors.foreground-s}
+format-full-underline = ${colors.foreground-alt}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.background-mod0}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
 
@@ -209,7 +206,7 @@ type = internal/mpd
 host = 127.0.0.1
 port = 6600
 format-online =<icon-prev><toggle><label-song><icon-next>
-format-online-underline = ${colors.secondary}
+format-online-underline = ${colors.foreground-alt}
 format-online-padding = 1
 
 #label-song-font = 4
@@ -232,50 +229,50 @@ label-song-padding = 1
 [module/bspwm]
 type = internal/bspwm
 format = <label-state> <label-mode>
-format-underline = ${colors.secondary}
 
 label-focused = %icon%
-;label-focused-font = 1
-label-focused-background = ${colors.background-alt}
-;label-focused-underline= ${colors.background-mod2}
-label-focused-underline= ${colors.background-mod2}
+label-focused-background = ${colors.background-mod1}
+label-focused-foreground = ${colors.background}
+label-focused-underline= ${colors.foreground}
 label-focused-padding = 1
 
 label-occupied = %icon%
-label-occupied-foreground = ${colors.background-mod0}
+label-occupied-foreground = ${colors.background-mod1}
 label-occupied-padding = 1
+label-occupied-underline = ${colors.foreground-s}
+
 
 label-urgent = %icon%!
-label-urgent-background = ${colors.background-mod2}
+label-urgent-background = ${colors.background}
 label-urgent-padding = 1
 
 label-empty = %icon%
-label-empty-foreground = ${colors.secondary}
+label-empty-foreground = ${colors.foreground-s}
 label-empty-padding = 1
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-default = 
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-default = 7
 
 
 [module/date]
 type = internal/date
 date-alt =   %Y-%m-%d
 date =  %A, %d %B %Y
-#date = %{F#928374}%{F-} %H:%M
-time-alt = %{F#928374}%{F-} %H:%M
-time = %{F#928374}%{F-} %H:%M:%S
+#date = %{F{colors.foreground}%{F-} %H:%M
+time-alt = %{F{colors.foreground}%{F-} %H:%M
+time = %{F{colors.background}%{F-} %H:%M
 
 label = %date% %time%
-label-underline = ${colors.foreground}
+label-underline = ${colors.foreground-alt}
 
 interval = 15
 ;format-background = ${colors.black}
-format-underline = ${colors.foreground}
+format-underline = ${colors.foreground-alt}
 format-padding = 1
 
 label-separator = |
@@ -287,14 +284,13 @@ type = internal/volume
 format-volume = <label-volume>
 format-volume-padding = 1
 
-format-volume-underline = ${colors.foreground}
+format-volume-underline = ${colors.foreground-alt}
 
-label-volume = %{F#928374} %{F-}%percentage:3%%
-#label-volume-foreground = ${color.foreground}
+label-volume = %{F{colors.foreground} %{F-}%percentage:3%%
 
-label-muted =%{F#928374} %{F-}mute
+label-muted =%{F{colors.foreground} %{F-}mute
 format-muted = <label-muted>
-format-muted-underline = ${colors.foreground}
+format-muted-underline = ${colors.foreground-alt}
 format-muted-padding = 1
 #label-muted-foreground = ${colors.foreground}
 
@@ -307,9 +303,9 @@ type = internal/xkeyboard
 ; Available tags:
 ;   <label-layout> (default)
 ;   <label-indicator> (default)
-format = %{A1:~/.bin/toggkbl:}%{F#928374} %{F-}<label-layout> <label-indicator>%{A}
+format = %{A1:~/.bin/toggkbl:}%{F${colors.foreground-alt} %{F-}<label-layout> <label-indicator>%{A}
 format-spacing = 0
-format-underline = ${colors.foreground}
+format-underline = ${colors.foreground-alt}
 
 ; Available tokens:
 ;   %layout%
@@ -351,13 +347,13 @@ accumulate-stats = true
 
 format-connected-padding = 1
 format-disconnected-padding = 1
-format-connected-underline = ${colors.foreground}
-format-disconnected-underline = ${colors.foreground}
+format-connected-underline = ${colors.foreground-alt}
+format-disconnected-underline = ${colors.foreground-alt}
 
 ; Available tags:
 ;   <label-connected> (default)
 ;   <ramp-signal>
-format-connected = %{F#928374} %{F-}<label-connected>
+format-connected = %{F${colors.foregroung-alt} %{F-}<label-connected>
 
 ; Available tags:
 ;   <label-disconnected> (default)
@@ -383,7 +379,7 @@ label-connected = : %signal% : %essid%
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
 ; Default: (none)
-label-disconnected = %{F#928374} %{F-}none
+label-disconnected = %{F${colors.foreground-alt} %{F-}none
 
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
@@ -404,9 +400,9 @@ animation-packetloss-framerate = 500
 
 [module/pkg]
 type = custom/script
-interval = 1200
+interval = 300
 format = <label>
-format-underline = #dc322f
+format-underline = ${colors.foreground-alt}
 label = "%output:0:30%"
 exec = ~/.scripts/apkg.sh
 exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
@@ -416,14 +412,14 @@ exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 type = custom/script
 exec-if = sensors
 exec = sensors | grep Core | awk '{print substr($3, 2, length($3)-5)}' | tr '\n' ' ' | sed 's/ /°C  /g' | sed 's/  $//'
-format-prefix = "  "
+format-prefix = "   "
 format-prefix-font = 4
-format-prefix-foreground = ${colors.secondary}
-format-underline = ${colors.secondary}
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.foreground-alt}
 
 
 [module/separator]
 type = custom/text
 content = |
-content-foreground = ${colors.secondary}
+content-foreground = ${colors.foreground}
 ; vim:ft=dosini

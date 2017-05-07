@@ -30,12 +30,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	unset f
 fi
 
-xrdb -merge ~/.Xresources &
 xset -b &
 xsetroot -cursor_name left_ptr &
-devmon --no-gui --no-startup-id &
+devmon --no-gui &
 compton -c &
 sxhkd -c /home/ebc/.config/sxhkd/sxhkdrc &
 dunst &
+/home/ebc/.scripts/rnwal.sh &
 
-exec bspwm -s "$PANEL_FIFO" -p W 
+exec /home/ebc/.scripts/wm

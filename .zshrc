@@ -1,7 +1,8 @@
 # Lines configured by zsh-newuser-install
+export QUARTUS_64BIT=1
+export BSPWM_STATE=/tmp/bspwm-state.json
 export BROWSER="firefox"
 export EDITOR="vim"
-export QUARTUS_64BIT=1
 export SUDO_EDITOR="vim"
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
 if [[ -n ${TMUX} && -n ${commands[tmux]}  ]];then
@@ -13,6 +14,8 @@ if [[ -n ${TMUX} && -n ${commands[tmux]}  ]];then
                     TERM=screen
         esac
 fi
+
+(/home/ebc/wal -r &)
 
 source /etc/profile
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -121,7 +124,7 @@ alias rm="rm -i"
 alias mke="sudo chmod +x"
 alias pacman='sudo pacman'
 alias alsamixer="alsamixer -g"
-alias svim="sudo vim"
+alias svim="sudoedit"
 alias emac='emacs -nw'
 alias h='history | tail'
 alias hg='history | grep'

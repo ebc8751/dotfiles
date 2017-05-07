@@ -1,19 +1,21 @@
- #
+#
 # wm independent hotkeys
 #
 
 # terminal emulator
 super + space
 	urxvt
+
 # floating terminal
 super + shift + space
-	urxvt 
+	urxvt
 	id=$(bspc query -N -n "focused");\
 	if [ -n "$id" ];then \
 			xprop -id $id -f _SCRATCH 32ii -set _SCRATCH $(date +%s,%N);\
 			bspc node -t "floating";\
 			xdotool windowunmap $id;\
 	fi
+
 # firefox
 super + shift + Return
 	firefox
@@ -42,14 +44,10 @@ super + Escape
 # bspwm hotkeys
 #
 
-# quit bspwm normally
-super + alt + Escape
-	bspc quit
-
-# quit saving state
-super + alt + {_,shift + }Escape
-	{bspc wm -d > "$BSPWM_STATE" && bspc quit, \
-	bspc quit 1}
+# refresh or quit bspwm
+super + shift + {_,alt + }Escape
+	{bspc wm -d | /home/ebc/.scripts/extract_canvas > "$BSPWM_STATE" && bspc quit, \
+	 bspc quit 1}
 
 # close and kill
 super + {_,shift + }q
@@ -163,31 +161,3 @@ super + alt +ss {o,p}
 #gaps
 super + {minus,equal}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5 ))
-
-#scratch
-super + \
-    id=$(bspc query -N -n "focused");\
-    if [ -n "$id" ];then \
-        xprop -id $id -f _SCRATCH 32ii -set _SCRATCH $(date +%s,%N);\
-        bspc node -t "floating";\
-        xdotool windowunmap $id;\
-    fi
-super + shift + \
-    i=$(bspc query -N -n "focused.floating");\
-    if [ -n "$i" ];then \
-        xprop -id $i -f _SCRATCH 32ii -set _SCRATCH $(date +%s,%N);\
-        xdotool windowunmap $i;\
-    else;\
-        i=`for w in $(xwininfo -root -children | grep -e "^\s*0x[0-9a-f]\+" -o);do \
-            t=$(xprop -id $w _SCRATCH | grep ' = \(.*\)');\
-            if [ -n "$t" ];then \
-                echo $t $w;\
-            fi;\
-           done|sort -n|head -n1|cut -d" " -f 5);\
-        if [ -n "$i" ];then \
-            xprop -id $i -remove _SCRATCH;\
-            bspc rule -a \* state=floating center=true --one-shot;\
-            xdotool windowmap $i;\
-            bspc node -f $i;\
-        fi;\
-    fi
