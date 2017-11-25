@@ -34,8 +34,9 @@ xset -b &
 xsetroot -cursor_name left_ptr &
 devmon --no-gui &
 compton -c &
+~/.fehbg &
 sxhkd -c /home/ebc/.config/sxhkd/sxhkdrc &
 dunst &
-/home/ebc/.scripts/rnwal.sh &
+polybar bar &
 
-exec /home/ebc/.scripts/wm
+exec /home/ebc/.scripts/wm >> ~/bspwm.log

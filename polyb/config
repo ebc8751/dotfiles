@@ -35,7 +35,7 @@ module-margin-left = 0
 
 modules-right = date
 modules-center = bspwm
-modules-left = battery separator network
+modules-left = battery separator 
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -66,9 +66,9 @@ padding-right = 0
 module-margin-right = 0
 module-margin-left = 0
 
-modules-right =  keyboard separator memory separator pkg separator filesystem
+modules-right = network separator memory separator pkg separator filesystem
 modules-center = cpu coretemps
-modules-left = mpd volume
+modules-left = mpd separator volume
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -179,20 +179,20 @@ format-discharging-padding = 1
 format-full-padding = 1
 
 format-charging = <animation-charging>  <label-charging>
-format-charging-underline = ${colors.foreground-s}
+format-charging-underline = ${colors.foreground-alt}
 
 format-discharging = <ramp-capacity>  <label-discharging>
-format-discharging-underline = ${colors.foreground-s}
+format-discharging-underline = ${colors.foreground-alt}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-s}
+format-full-prefix =   
+format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${colors.foreground-alt}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
-ramp-capacity-foreground = ${colors.background-mod0}
+ramp-capacity-foreground = ${colors.foreground-alt}
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -205,7 +205,7 @@ animation-charging-framerate = 750
 type = internal/mpd
 host = 127.0.0.1
 port = 6600
-format-online =<icon-prev><toggle><label-song><icon-next>
+format-online =<icon-prev><icon-next><toggle><label-song>
 format-online-underline = ${colors.foreground-alt}
 format-online-padding = 1
 
