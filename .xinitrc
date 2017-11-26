@@ -37,6 +37,6 @@ compton -c &
 ~/.fehbg &
 sxhkd -c /home/ebc/.config/sxhkd/sxhkdrc &
 dunst &
-polybar bar &
+polybar top &
 
 exec /home/ebc/.scripts/wm >> ~/bspwm.log
