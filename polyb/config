@@ -1,425 +1,149 @@
-;:set syn=dosini
+;                 __      __              
+;    ____  ____  / /_  __/ /_  ____ ______
+;   / __ \/ __ \/ / / / / __ \/ __ `/ ___/
+;  / /_/ / /_/ / / /_/ / /_/ / /_/ / /    
+; / .___/\____/_/\__, /_.___/\__,_/_/     
+;/_/            /____/                    
+;
+;
 
 [global/wm]
-#margin-top = 8
-#margin-bottom = 8
-#margin-left = 8
-#margin-right = 8
-
+;margin-top = 
+;margin-bottom = 2
 
 [colors]
-background = #222222
-background-alt = ${xrdb:color1}
-bdackground-alrt = ${xrdb:color2}
-background-mod0 = ${xrdb:color3}
-background-mod1 = ${xrdb:color5}
-background-mod2 = ${xrdb:color6}
-background-unf = ${xrdb:color9}
-
-foreground = ${xrdb:color7}
-foreground-alt = ${xrdb:color14}
-foreground-s = ${xrdb:color7}
+fg = ${xrdb:color7}
+bg = ${xrdb:color0}
 
 [bar/top]
-
-bottom = false
-width = 90%
-height = 25
-offset-x = 95.5
-offset-y = 3
-padding-left = 0
-padding-right = 0
-
-module-margin-right = 0
-module-margin-left = 0
-
-modules-right = date
-modules-center = bspwm
-modules-left = battery separator 
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-underline-size = 1
-underline-color = ${colors.foreground-s}
-
-font-0 = xos4 Terminus:size=15;0
-font-1 = MaterialIcons:size=15;0
-font-2 = Termsynu:size=15:antialias=false;0
-font-3 = FontAwesome:size=15;0
-
-[bar/bar]
-bottom = true
-wm-restack = bspwm
-width = 99%
-height = 23
-offset-x = 9
-offset-y = 3
-
-locale = en_US.UTF-8
-
-enable-ipc = true
-
-padding-left = 0
-padding-right = 0
-
-module-margin-right = 0
-module-margin-left = 0
-
-modules-right = network separator memory separator pkg separator filesystem
-modules-center = cpu coretemps
-modules-left = mpd separator volume
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-underline-size = 1
-underline-color = ${colors.foreground-s}
-
-;tray-detached = false
-;tray-position = 0
-;tray-offset-x = 0
-;tray-offset-y = 0
-;tray-maxsize = 16
-;tray-padding = 0
-;tray-transparent = false
-;tray-scale = 1.0
-
-font-0 = xos4 Terminus:size=12;2
-font-1 = Wuncon Siji:size=10;0
-font-2 = Termsynu:size=8:antialias=false;-2
-font-3 = FontAwesome:size=8;2
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+width = 100%
+height = 32
+offset-x = 0%
+offset-y= 0%
+fixed-center = true
+override-redirect = false 
 
 
-[module/filesystem]
-type = internal/fs
-interval = 25
+background = ${colors.bg}
+foreground = ${colors.fg}
 
-mount-0 = /
-mount-1 = /home
+font-0 = Dina:size=9:;0
+font-1 = Wuncon Siji:size=9:;0
 
-label-mounted-underline = ${colors.foreground-alt}
-label-unmounted-underline = ${colors.foreground-alt}
-label-mounted-padding = 1
-label-unmounted-padding = 1
+modules-left =  date time volume battery 
+modules-center = xwindow 
+modules-right = ewmh
 
-label-mounted =  %free% of %total%
-label-unmounted =  %mountpoint%: not mounted
-label-unmounted-foreground = ${colors.foreground}
+tray-position = right
+tray-padding = 0
+tray-background = ${colors.bg}
+tray-transparent = false
+tray-detached = false2
 
+underline-size = 3
 
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-s}
-
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-
-[module/cpu]
-type = internal/cpu
-interval = 1.5
-
-format = <label> <ramp-coreload>
-format-padding = 1
-format-underline = ${colors.foreground-alt}
-
-ramp-coreload-0 = 
-ramp-coreload-1 = 
-ramp-coreload-2 = 
-ramp-coreload-3 = 
-ramp-coreload-4 = 
-ramp-coreload-5 = 
-ramp-coreload-0-underline = ${colors.foreground-alt}
-ramp-coreload-1-underline = ${colors.background-alt}
-ramp-coreload-2-underline = ${colors.background-mod0}
-ramp-coreload-3-underline = ${colors.background-mod1}
-ramp-coreload-4-underline = ${colors.background-mod2
-ramp-coreload-5-underline = ${colors.foreground-alt}
-label =   %percentage%%
-label-underline = ${colors.foreground-alt}
-
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-padding = 1
-format-underline = ${colors.foreground-alt}
-label =  %percentage_used%%
-
-
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = ADP1
-full-at = 98
-
-format-charging-padding = 1
-format-discharging-padding = 1
-format-full-padding = 1
-
-format-charging = <animation-charging>  <label-charging>
-format-charging-underline = ${colors.foreground-alt}
-
-format-discharging = <ramp-capacity>  <label-discharging>
-format-discharging-underline = ${colors.foreground-alt}
-
-format-full-prefix =   
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${colors.foreground-alt}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-framerate = 750
-
-
-[module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
-format-online =<icon-prev><icon-next><toggle><label-song>
-format-online-underline = ${colors.foreground-alt}
-format-online-padding = 1
-
-#label-song-font = 4
-label-song = %{A1:mpc toggle:}%artist% - %title%%{A}
-icon-play = 
-icon-pause = 
-icon-prev = 
-icon-next = 
-
-icon-prev-foreground = ${colors.foreground}
-icon-next-foreground = ${colors.foreground}
-
-icon-play-padding = 1
-icon-pause-padding = 1
-icon-prev-padding = 1
-icon-next-padding = 1
-label-song-padding = 1
-
-
-[module/bspwm]
-type = internal/bspwm
-format = <label-state> <label-mode>
-
-label-focused = %icon%
-label-focused-background = ${colors.background-mod1}
-label-focused-foreground = ${colors.background}
-label-focused-underline= ${colors.foreground}
-label-focused-padding = 1
-
-label-occupied = %icon%
-label-occupied-foreground = ${colors.background-mod1}
-label-occupied-padding = 1
-label-occupied-underline = ${colors.foreground-s}
-
-
-label-urgent = %icon%!
-label-urgent-background = ${colors.background}
-label-urgent-padding = 1
-
-label-empty = %icon%
-label-empty-foreground = ${colors.foreground-s}
-label-empty-padding = 1
-
-ws-icon-0 = 1;1
-ws-icon-1 = 2;2
-ws-icon-2 = 3;3
-ws-icon-3 = 4;4
-ws-icon-4 = 5;5
-ws-icon-5 = 6;6
-ws-icon-default = 7
-
-
-[module/date]
-type = internal/date
-date-alt =   %Y-%m-%d
-date =  %A, %d %B %Y
-#date = %{F{colors.foreground}%{F-} %H:%M
-time-alt = %{F{colors.foreground}%{F-} %H:%M
-time = %{F{colors.background}%{F-} %H:%M
-
-label = %date% %time%
-label-underline = ${colors.foreground-alt}
-
-interval = 15
-;format-background = ${colors.black}
-format-underline = ${colors.foreground-alt}
-format-padding = 1
-
-label-separator = |
-
+spacing = 1 
+padding-left = 1
+padding-right = 1
+module-margin-left = 2
+module-margin-right = 2
 
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume>
-format-volume-padding = 1
+format-volume = <ramp-volume><label-volume>
+module-margin-right = 1
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
-format-volume-underline = ${colors.foreground-alt}
+format-volume-background = ${colors.bg}
+ramp-volume-foreground = ${xrdb:color6}
 
-label-volume = %{F{colors.foreground} %{F-}%percentage:3%%
-
-label-muted =%{F{colors.foreground} %{F-}mute
-format-muted = <label-muted>
-format-muted-underline = ${colors.foreground-alt}
-format-muted-padding = 1
-#label-muted-foreground = ${colors.foreground}
-
-format-padding = 1
+label-muted = - muted 
 
 
-[module/keyboard]
-type = internal/xkeyboard
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+format-prefix = " "
+format-prefix-foreground = ${xrdb:color6}
+module-margin-left = 2
+format-padding = 2
+format-background = ${colors.bg}
 
-; Available tags:
-;   <label-layout> (default)
-;   <label-indicator> (default)
-format = %{A1:~/.bin/toggkbl:}%{F${colors.foreground-alt} %{F-}<label-layout> <label-indicator>%{A}
-format-spacing = 0
-format-underline = ${colors.foreground-alt}
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-scroll = true
 
-; Available tokens:
-;   %layout%
-;   %name%
-;   %number%
-; Default: %layout%
-label-layout = %layout%
-format-padding = 1
+format = <label-state>
 
-; Available tokens:
-;   %name%
-; Default: %name%
-label-indicator = %name%
-label-indicator-padding = 0
+label-active =  
+label-active-foreground = ${xrdb:color6}
+label-active-background = ${colors.bg}
+;label-active-padding = 1
 
+label-empty = 
+label-empty-foreground = ${colors.fg}
+label-empty-background = ${colors.bg}
+;label-empty-padding = 1
 
-[module/network]
-type = internal/network
-interface = wlo1
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 3.0
-
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-accumulate-stats = true
-
-format-connected-padding = 1
-format-disconnected-padding = 1
-format-connected-underline = ${colors.foreground-alt}
-format-disconnected-underline = ${colors.foreground-alt}
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
-format-connected = %{F${colors.foregroung-alt} %{F-}<label-connected>
-
-; Available tags:
-;   <label-disconnected> (default)
-format-disconnected = <label-disconnected>
-
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
-format-packetloss = <animation-packetloss> <label-connected>
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %upspeed%   [wireless+wired]
-;   %downspeed% [wireless+wired]
-;   %linkspeed% [wired]
-; Default: %ifname% %local_ip%
-label-connected = : %signal% : %essid%
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-; Default: (none)
-label-disconnected = %{F${colors.foreground-alt} %{F-}none
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %linkspeed% [wired]
-; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = ${colors.foreground}
-
-; Only applies if <animation-packetloss> is used
-animation-packetloss-0 = ⚠
-animation-packetloss-1 = 📶
-; Framerate in milliseconds
-animation-packetloss-framerate = 500
+label-urgent = 
+label-urgent-foreground = #EC5f67
+label-urgent-background = ${colors.bg}
+;label-urgent-padding = 1
 
 
-[module/pkg]
+[module/date]
+type = internal/date
+interval = 1
+date = " %A, %d %B "
+format-prefix = "" 
+format-prefix-foreground = ${xrdb:color6}
+
+[module/time]
+type = internal/date
+interval = 1
+date = " %I:%M" 
+format-prefix = ""
+format-prefix-foreground = ${xrdb:color6}
+
+[module/battery]
+type = internal/battery
+full-at = 100
+battery = BAT0
+adapter = ACAD
+poll-interval = 5
+
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+label-charging = %percentage%%
+label-charging-foreground = ${colors.fg}
+label-discharging = %percentage%%
+label-discharging-foreground = ${colors.fg}
+label-full =  full!
+ramp-capacity-foreground = ${xrdb:color6}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+bar-capacity-width = 10
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${xrdb:color6}
+animation-charging-framerate = 750
+
+[module/spotipy]
 type = custom/script
-interval = 300
-format = <label>
-format-underline = ${colors.foreground-alt}
-label = "%output:0:30%"
-exec = ~/.scripts/apkg.sh
-exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+exec =  ~/scripts/spoti.py
+exec-if = pgrep spotify > /dev/null
+interval = 0.01
+click-left = playerctl -p spotify play-pause 
 
 
-[module/coretemps]
-type = custom/script
-exec-if = sensors
-exec = sensors | grep Core | awk '{print substr($3, 2, length($3)-5)}' | tr '\n' ' ' | sed 's/ /°C  /g' | sed 's/  $//'
-format-prefix = "   "
-format-prefix-font = 4
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.foreground-alt}
-
-
-[module/separator]
-type = custom/text
-content = |
-content-foreground = ${colors.foreground}
 ; vim:ft=dosini
