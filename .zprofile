@@ -8,3 +8,8 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
   exec startx
 fi
 
+emulate sh -c 'source /etc/profile'
+export PANEL_FIFO="/tmp/panel-fifo"
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
+f

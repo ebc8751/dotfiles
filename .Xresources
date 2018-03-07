@@ -6,10 +6,13 @@ URxvt.scrollWithBuffer:		 true
 URxvt.scrollTtyKeypress:	 true
 URxvt.doubleBuffer:		 true
 URxvt.transparent: 		 false
+URxvt.internalBorder: 		 50
+URxvt.letterSpace:		 -1
+URxvt.depth:			 32
 
 ! special
 *.foreground:   #c0c5ce
-*.background:   #2b303b
+*.background:   [63]#2b303b
 *.cursorColor:  #c0c5ce
 
 ! black
@@ -51,7 +54,6 @@ URxvt.transparent: 		 false
 !URxvt.boldFont:			 xft:xos4 Terminus:pixelsize=15
 !URxvt.font: -gohu-*-medium-*-*-*-14-*-*-*-*-*-*-*
 !URxvt.boldFont: -gohu-*-bold-*-*-*-14-*-*-*-*-*-*-*
-
 URxvt.font: xft:Fira Mono:pixelsize=15,style=regular
 URxvt.boldFont: xft:Fira Mono:pixelsize=15,style=bold
 URxvt.italicFont: xft:Fira Mono:pixelsize=15,style=bold
@@ -62,7 +64,6 @@ URxvt.boldItalicFont: xft:Fira Mono:pixelsize=15,style=bold
 
 Xft.antialias:			 1
 Xft.autohint:			 0
-Xft.dpi:			 96
 Xft.hinting:			 1
 Xft.hintstyle:			 hintslight
 Xft.lcdfilter:			 lcddefault
