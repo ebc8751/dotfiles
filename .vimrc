@@ -1,7 +1,3 @@
-source ~/.vim/bundles.vim
-
-set term=xterm-256color
-
 " encoding dectection
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 
@@ -77,7 +73,6 @@ autocmd Syntax javascript set syntax=jquery   " JQuery syntax support
 " Plugin settings
 
 " Color override
-colorscheme void
 highlight LineNr ctermfg=1
 highlight Visual cterm=NONE ctermbg=3 ctermfg=16
 highlight Search cterm=NONE ctermbg=3 ctermfg=16
@@ -170,27 +165,27 @@ let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 
 
 " airline
-let g:airline_theme='outrun'
-function! AirlineInit()
- let spc = g:airline_symbols.space
- let g:airline_section_a = airline#section#create_left(['mode'])
- let g:airline_section_b = ''
- " let g:airline_section_b = airline#section#create_left(['branch'])
- if exists("+autochdir") && &autochdir == 1
-   let g:airline_section_c = airline#section#create_left(['path'])
- else
-   let g:airline_section_c = airline#section#create_left(['file'])
- endif
- let g:airline_section_x = ''
- let g:airline_section_y = airline#section#create_left(['filetype'])
- let g:airline_section_z = airline#section#create_left(['%3p%%'.spc, 'linenr',  ':%3v'])
- let g:airline_section_error = ''
- let g:airline_section_warning = ''
- let g:airline_left_sep = ' '
- let g:airline_right_sep = ' '
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
-autocmd VimEnter * call AirlineInit()
+"let g:airline_theme='outrun'
+"function! AirlineInit()
+" let spc = g:airline_symbols.space
+" let g:airline_section_a = airline#section#create_left(['mode'])
+" let g:airline_section_b = ''
+" " let g:airline_section_b = airline#section#create_left(['branch'])
+" if exists("+autochdir") && &autochdir == 1
+"   let g:airline_section_c = airline#section#create_left(['path'])
+" else
+"   let g:airline_section_c = airline#section#create_left(['file'])
+" endif
+" let g:airline_section_x = ''
+" let g:airline_section_y = airline#section#create_left(['filetype'])
+" let g:airline_section_z = airline#section#create_left(['%3p%%'.spc, 'linenr',  ':%3v'])
+" let g:airline_section_error = ''
+" let g:airline_section_warning = ''
+" let g:airline_left_sep = ' '
+" let g:airline_right_sep = ' '
+"endfunction
+"autocmd User AirlineAfterInit call AirlineInit()
+"autocmd VimEnter * call AirlineInit()
 
 " SuperTab
 " let g:SuperTabDefultCompletionType='context'
