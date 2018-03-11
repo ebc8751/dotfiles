@@ -26,7 +26,7 @@ super + shift + -
 
 # program launcher
 super + Tab
-	rofi -lines 12 -padding 5 -width 60 -location 0 -modi run,drun,window -show drun -columns 3 
+	rofi -lines 12 -padding 5 -width 60 -location 0 -modi run,drun,window,combi -show combi -columns 3 
 
 # empty space
 super + shift + f

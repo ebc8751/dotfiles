@@ -1,6 +1,14 @@
 export QUARTUS_64BIT=1
 export BSPWM_STATE=/tmp/bspwm-state.json
 export BROWSER="firefox"
-export EDITOR="vim"
-export SUDO_EDITOR="vim"
-export PATH=$PATH:~/altera/modelsim_ase/bin:~/altera/quartus/bin
+export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
+export ALTERAPATH="/opt/altera"
+export ALTERAOCLSDKROOT="${ALTERAPATH}/hld"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/altera/lib32
+export QUARTUS_ROOTDIR=${ALTERAPATH}/quartus
+export QUARTUS_ROOTDIR_OVERRIDE="$QUARTUS_ROOTDIR"
+export PATH=$PATH:${ALTERAPATH}/quartus/bin
+export PATH=$PATH:${ALTERAPATH}/nios2eds/bin
+export PATH=$PATH:${QSYS_ROOTDIR}
+export PATH=$PATH:/opt/altera/modelsim_ase/bin

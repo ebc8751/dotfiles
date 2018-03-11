@@ -1,9 +1,8 @@
 # Lines configured by zsh-newuser-install
-export QUARTUS_64BIT=1
 export BSPWM_STATE=/tmp/bspwm-state.json
 export BROWSER="firefox"
-export EDITOR="vim"
-export SUDO_EDITOR="vim"
+export EDITOR="nvim"
+export SUDO_EDITOR="nvim"
 
 source /etc/profile
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
