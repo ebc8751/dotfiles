@@ -30,7 +30,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	unset f
 fi
 
-xsetroot -cursor_name left_ptr  &
+PATH=$PATH:/opt/altera/modelsim_ase/linuxaloem:/opt/altera/modelsim_ase/bin:opt/altera/modelsim_ase/linux64 &
+export PATH &
+source /etc/profile &
 xrandr --setproviderutputsource modesetting NVIDIA-0
 xrandr --auto
 xrandr --dpi 144
