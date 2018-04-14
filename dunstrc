@@ -136,7 +136,7 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = yes
+    word_wrap = no
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -252,7 +252,7 @@
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
-[urgency_critical]
+	[urgency_critical]
     background = "#2f343f"
     foreground = "#f5f8f6"
     frame_color = "#e3788f"

@@ -16,9 +16,9 @@ fg = ${xrdb:color7}
 bg = ${xrdb:color0}
 
 [bar/top]
-width = 100%
+width = 80%
 height = 16
-offset-x = 0%
+offset-x = 10%
 offset-y= 0%
 fixed-center = true
 override-redirect = false 
@@ -30,7 +30,8 @@ foreground = ${colors.fg}
 font-0 = xos4 Terminus:size=9:;0
 font-1 = Wuncon Siji:size=9:;0
 
-modules-right = volume battery network updates-arch-combined info-hackspeed system-usb-udev
+#modules-right = volume battery network updates-arch-combined info-hackspeed system-usb-udev
+modules-right = volume battery network
 modules-center = date time
 modules-left = windows xwindow
 
@@ -120,10 +121,6 @@ label-sticky = 
 label-sticky-foreground = #fba922
 label-private = 
 label-private-foreground = #bd2c40
-
-label-separator = |
-label-separator-padding = 2
-label-separator-foreground = #ffb52a
 
 [module/date]
 type = internal/date

@@ -1,15 +1,14 @@
 # Lines configured by zsh-newuser-install
-export BSPWM_STATE=/tmp/bspwm-state.json
-export BROWSER="firefox"
-export EDITOR="nvim"
-export SUDO_EDITOR="nvim"
-
-source /etc/profile
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
+setopt appendhistory autocd extendedglob nomatch notify
+bindkey -e
 # End of lines configured by zsh-newuser-install
+# The following lines were read by zsh-newuser-install.
+# They were moved here as they could not be understood.
+# Tue Mar 13 11:22:50 +04 2018
+# End of lines moved by zsh-newuser-install.
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/ebc/.zshrc'
 autoload -Uz colors && colors
@@ -20,11 +19,6 @@ setopt completealiases
 setopt correct
 setopt autocd
 setopt notify
-
-#runhelp
-autoload -Uz run-help
-unalias run-help
-alias help=run-help
 
 #insert sudo
 insert_sudo () { zle beginning-of-line; zle -U "sudo " }
@@ -147,7 +141,6 @@ zle -N zle-keymap-select
 zle -N zle-line-finish
 
 PROMPT=' $(prompt_hostname)$(prompt_user)$(prompt_jobs)$(prompt_vimode)$(prompt_status) '
-#PROMPT='$(prompt_hostname)$(prompt_user)$(prompt_jobs)$(prompt_status) '
 RPROMPT='$(prompt_path)$(prompt_git) '
 
 # for rxvt
@@ -237,4 +230,5 @@ alias fgrep='fgrep --color=auto'
 alias ffs='sudo $(history -p !!)'
 alias run.c='./a.out'
 alias pacs='pacman -Qss | grep'
+alias monodevelop='flatpak run com.xamarin.MonoDevelop'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

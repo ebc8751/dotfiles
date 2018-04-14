@@ -30,12 +30,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	unset f
 fi
 
-PATH=$PATH:/opt/altera/modelsim_ase/linuxaloem:/opt/altera/modelsim_ase/bin:opt/altera/modelsim_ase/linux64 &
-export PATH &
-source /etc/profile &
-xrandr --setproviderutputsource modesetting NVIDIA-0
 xrandr --auto
-xrandr --dpi 144
 devmon --no-gui &
 xset -b &
 compton -b --paint-on-overlay --unredir-if-possible --backend xr_glx_hybrid --use-ewmh-active-win --xrender-sync-fence --vsync opengl-swc --glx-no-stencil &
@@ -44,4 +39,9 @@ sxhkd -c /home/ebc/.config/sxhkd/sxhkdrc &
 dunst &
 ~/.scripts/launch.sh &
 
-exec /home/ebc/.scripts/wm >> ~/bspwm.log
+session=${1:bspwm} &
+
+case $session in
+	xfce|xfce4		) exec startxfce4;;
+	*			) exec $1;;
+esac
